@@ -20,7 +20,7 @@
         "distribution": "internal"
       },
       "production": {
-        "image": "ubuntu:jammy-20220531"
+        "image": "ubuntu:jammy-2022053"
       }
     }
  
