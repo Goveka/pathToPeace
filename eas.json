@@ -20,7 +20,6 @@
         "distribution": "internal"
       },
       "production": {
-        "image": "ubuntu:focal-20210921"
       }
     }
  

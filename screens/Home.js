@@ -216,17 +216,17 @@ const HomeScreen = () => {
         <>
           <Text style={{ color: '#3E8BA9', fontSize: 30, fontWeight: 'bold' }}>Previous Emotional Rating</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Fatigue & Exhaustion:</Text>
-          <Text>{(latestRating.fatigueAndExhaustion * 10).toFixed(0)}%</Text>
+          <Text>{(latestRating.fatigueAndExhaustion * 10).toFixed(0)}/10</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Anxiety:</Text>
-          <Text>{(latestRating.anxiety * 10).toFixed(0)}%</Text>
+          <Text>{(latestRating.anxiety * 10).toFixed(0)}/10</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Emotional Numbness:</Text>
-          <Text>{(latestRating.emotionalNumbness * 10).toFixed(0)}%</Text>
+          <Text>{(latestRating.emotionalNumbness * 10).toFixed(0)}/10</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}> Isolation:</Text>         
-          <Text>{(latestRating.isolation * 10).toFixed(0)}%</Text>
+          <Text>{(latestRating.isolation * 10).toFixed(0)}/10</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 18 }}> Insecurity</Text>         
-          <Text>{(latestRating.insecurity * 10).toFixed(0)}%</Text>
+          <Text>{(latestRating.insecurity * 10).toFixed(0)}/10</Text>
           <Text style={{ fontWeight: 'bold', fontSize: 22 }}> Average Emotion</Text>         
-          <Text>{(latestRating.AverageEmotion).toFixed(0)}%</Text>
+          <Text>{(latestRating.AverageEmotion).toFixed(0)}/10</Text>
         </>
       )}
     </View>
