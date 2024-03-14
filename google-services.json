@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "552550168030",
+    "project_id": "path-to-peace-a0ec2",
+    "storage_bucket": "path-to-peace-a0ec2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552550168030:android:3208c3182d625665d5994f",
+        "android_client_info": {
+          "package_name": "com.snjim.pathtopeace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJpyimY9lMaIkj_AX8H5i_SAGENIzhlMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

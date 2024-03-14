@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "pathToPeaceReactNative",
+    "slug": "path-to-peace",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/PathtoPeaceLogoStatic.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/PathtoPeaceLogoStatic.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff",
+      "scheme": "myapp"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/PathtoPeaceLogoStatic.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.snjim.pathtopeace"
+    },
+    "web": {
+      "favicon": "./assets/PathtoPeaceLogoStatic.png"
+    },
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fef4dd24-d693-40e3-a627-8b5083ffe10c"
+      }
+    },
+    "owner": "snjim"
+  }
+}
