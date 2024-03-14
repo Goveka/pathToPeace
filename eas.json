@@ -20,7 +20,7 @@
         "distribution": "internal"
       },
       "production": {
-        "image": "ubuntu:jammy-2022053"
+        "image": "ubuntu:focal-20210921"
       }
     }
  
