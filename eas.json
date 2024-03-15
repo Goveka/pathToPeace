@@ -6,7 +6,7 @@
       "preview": {
         "android": {
           "buildType": "apk",
-          "imgae": "latest"
+          "image": "latest"
         }
       },
       "preview2": {
