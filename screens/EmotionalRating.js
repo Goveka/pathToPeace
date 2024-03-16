@@ -61,15 +61,15 @@ const EmotionalRating = ({ navigation }) => {
       event.persist();
 
       setTimeout(() => {
-        const { locationX } = event.nativeEvent;
+      const { locationX } = event.nativeEvent;
 
         if (locationX !== undefined) {
           event.target.measure((_, __, width) => {
-            const relativeX = locationX / width;
-            const newProgressValue = Math.min(1.0, Math.max(0.0, relativeX));
+          const relativeX = locationX / width;
+          const newProgressValue = Math.min(1.0, Math.max(0.0, relativeX));
             setProgressFunction(newProgressValue);
-          });
-        }
+        });
+      }
       }, 0);
     };
   };
