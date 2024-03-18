@@ -22,7 +22,7 @@ const PasswordResetRequest = () => {
 
       // Send the reset URL and email to the server
       // Replace with your secure backend API endpoint, error handling, and success/failure messages
-      const response = await fetch('http://192.168.43.154:6000/reset-password-request', {
+      const response = await fetch('https://pathtopeaceserver.onrender.com/reset-password-request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

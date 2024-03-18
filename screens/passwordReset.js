@@ -25,7 +25,7 @@ const PasswordReset = () => {
 
     try {
       setIsLoading(true);
-      const response = await fetch(`http://192.168.43.154:6000/reset-password/`, {
+      const response = await fetch(`https://pathtopeaceserver.onrender.com/reset-password/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

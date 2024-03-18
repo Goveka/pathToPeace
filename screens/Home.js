@@ -32,7 +32,7 @@ const HomeScreen = () => {
     setIsLoading(true);
     try {
       const token = await SecureStore.getItemAsync('my_token');
-      const response = await fetch('http://192.168.43.154:6000/generate-pdf', {
+      const response = await fetch('https://pathtopeaceserver.onrender.com/generate-pdf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
@@ -64,7 +64,7 @@ const HomeScreen = () => {
 
     if (token) {
       // Send the token to the server for validation using a dedicated route
-      fetch('http://192.168.43.154:6000/validate-token', {
+      fetch('https://pathtopeaceserver.onrender.com/validate-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
@@ -96,7 +96,7 @@ const HomeScreen = () => {
     try {
       setIsLoading(true);
       const token = await SecureStore.getItemAsync('my_token');
-      const response = await fetch('http://192.168.43.154:6000/findTheLatestEmotionalRatingByUserId', {
+      const response = await fetch('https://pathtopeaceserver.onrender.com/findTheLatestEmotionalRatingByUserId', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
@@ -122,7 +122,7 @@ const HomeScreen = () => {
     try {
       setIsLoading(true);
       const token = await SecureStore.getItemAsync('my_token');
-      const response = await fetch('http://192.168.43.154:6000/findLatestJournalByUserId', {
+      const response = await fetch('https://pathtopeaceserver.onrender.com/findLatestJournalByUserId', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),

@@ -23,7 +23,7 @@ const EmotionalRating = ({ navigation }) => {
     const token = await SecureStore.getItemAsync('my_token');
 
     if (token) {
-      fetch('http://192.168.43.154:6000/validate-token', {
+      fetch('https://pathtopeaceserver.onrender.com/validate-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
@@ -92,7 +92,7 @@ const EmotionalRating = ({ navigation }) => {
     try {
       setIsLoading(true);
       const token = await SecureStore.getItemAsync('my_token');
-      const response = await fetch('http://192.168.43.154:6000/emotionalRating', {
+      const response = await fetch('https://pathtopeaceserver.onrender.com/emotionalRating', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

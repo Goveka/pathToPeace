@@ -23,7 +23,7 @@ const LoginScreen = () => {
 
     if (token) {
       // Send the token to the server for validation using a dedicated route
-      fetch('http://192.168.43.154:6000/validate-token', {
+      fetch('https://pathtopeaceserver.onrender.com/validate-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token }),
@@ -68,7 +68,7 @@ const LoginScreen = () => {
         return;
       }
 
-      const response = await fetch('http://192.168.43.154:6000/login', {
+      const response = await fetch('https://pathtopeaceserver.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
