@@ -114,7 +114,7 @@ const retrieveToken = async () => {
       source={require('../assets/PathtoPeaceStarryNightBackground.png')}
       style={styles.backgroundImage}
     >
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: 'transparent', justifyContent: 'center', padding: 20 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: 'transparent', justifyContent: 'center', padding: 10 }}>
       <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 24, backgroundColor:'#3E8BA9', textAlign:'center'}}>{username}</Text>
       <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, marginBottom: 5, backgroundColor: '#3E8BA9',textAlign:'center' }} >Day:{day}/30</Text>
       <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>Write down your proud accomplishments today?</Text>

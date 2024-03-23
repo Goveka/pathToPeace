@@ -159,7 +159,7 @@ const HomeScreen = () => {
      <View style={{ flexDirection: 'row', flexWrap: 'wrap', margin: '5%', gap: 10 }}>
 
      {/* Daily Journal Section */}
-     <View style={{ flexDirection: 'column', alignItems: 'center', borderRadius: 5, backgroundColor: '#3E8BA9', padding: 10 }}>
+     <View style={{ flexDirection: 'column', alignItems: 'center', borderRadius: 5, backgroundColor: '#3E8BA9', padding: 5 }}>
       <Ionicons name="book" size={50} color="white" />
       <Button
         style={{ backgroundColor: '#3E8BA9' }}
@@ -171,7 +171,7 @@ const HomeScreen = () => {
      </View>
 
      {/* Emotional Rating Section */}
-     <View style={{ flexDirection: 'column', alignItems: 'center', borderRadius: 5, backgroundColor: '#3E8BA9', padding: 10 }}>
+     <View style={{ flexDirection: 'column', alignItems: 'center', borderRadius: 5, backgroundColor: '#3E8BA9', padding: 5 }}>
       <Ionicons name="happy" size={50} color="white" />
       <Button
         title="Emotional Rating"
