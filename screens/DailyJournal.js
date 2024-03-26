@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { View, Text, TextInput, Button,ActivityIndicator,Image,ImageBackground,StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as SecureStore from 'expo-secure-store';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const DailyJournal= ()=>{
 

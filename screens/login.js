@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, SafeAreaView,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Button,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as SecureStore from 'expo-secure-store';
 import { registerForPushNotificationsAsync, sendPushNotification } from '../helperFunctions/pushNotifications';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 

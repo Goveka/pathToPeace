@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native';
 import { View, Text, StyleSheet, Button,ImageBackground,ActivityIndicator} from 'react-native';
 import * as Progress from 'react-native-progress';
 import * as SecureStore from 'expo-secure-store';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native';
 
 const EmotionalRating = ({ navigation }) => {
   const [fatigueAndExhaustion, setFatigueAndExhaustion] = useState(0.0);

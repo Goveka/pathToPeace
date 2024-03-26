@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button,SafeAreaView,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Button,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import DatePicker from '@react-native-community/datetimepicker';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const RegisterScreen = () => {
@@ -9,8 +10,6 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
-  const [country, setCountry]= useState('');
-  const [city, setCity] = useState('');
   const navigation = useNavigation();
   const [mode, setMode] = useState('date');
   const [showPicker, setShowPicker] = useState(false);

@@ -1,9 +1,10 @@
 import React, {useState,useEffect} from 'react';
-import { SafeAreaView,View, Button, Text, ScrollView,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
+import {View, Button, Text, ScrollView,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as SecureStore from 'expo-secure-store';
 import * as WebBrowser from 'expo-web-browser'; 
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
   const [latestRating, setLatestRating] = useState(null);
