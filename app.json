@@ -30,7 +30,9 @@
       "favicon": "./assets/PathtoPeaceLogoStatic.png"
     },
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics"
     ],
     "extra": {
       "eas": {
