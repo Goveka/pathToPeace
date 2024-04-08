@@ -117,7 +117,8 @@ const LoginScreen = () => {
     style={styles.backgroundImage}
   >
     <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', width:380 }}>
-
+    <Text style={{ color: '#FF7F50', fontWeight: 'bold', fontSize: 25, marginBottom: 3 }} >Path to peace</Text>
+    <Text style={{ color: '#DAA520', fontWeight: 'bold', fontSize: 20, marginBottom: 1 }} >Alessia Vinci</Text>
     <Image source={require('../assets/PathtoPeaceLogoStatic.png')} style={{ width: 100, height: 100, marginBottom: 20 }} />
     {isLoading ? (
           <ActivityIndicator size="large" color="#3E8BA9" />
@@ -156,7 +157,7 @@ const LoginScreen = () => {
     />
 
     {/* Forgotten Password Link */}
-    <Text style={{ color: '#3E8BA9', marginTop: 10 , width:200}} onPress={() => navigation.navigate('PasswordResetRequest')}>Forgotten password</Text>
+    <Text style={{ color: '#CD5C5C', marginTop: 10 , width:200}} onPress={() => navigation.navigate('PasswordResetRequest')}>Forgotten password</Text>
   </View>
   </SafeAreaView>
   </ImageBackground>

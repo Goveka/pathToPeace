@@ -4,6 +4,7 @@ import * as Progress from 'react-native-progress';
 import * as SecureStore from 'expo-secure-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
+import * as WebBrowser from 'expo-web-browser'; 
 
 const EmotionalRating = ({ navigation }) => {
   const [fatigueAndExhaustion, setFatigueAndExhaustion] = useState(0.0);
@@ -15,6 +16,15 @@ const EmotionalRating = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage]= useState('')
   const [username, setUsername]= useState('');
+  const [pdfAvailable, setPdfAvailable] = useState(false);
+
+
+
+  useEffect(() => {
+    if (day >= 30) {
+      handleOpenPDF(); // Trigger PDF generation on day 30
+    }
+  }, [day]); 
 
   useEffect(() => {
     retrieveToken();
@@ -124,8 +134,38 @@ const EmotionalRating = ({ navigation }) => {
     };
   };
 
+    // Function to download and display the PDF report
+    const handleOpenPDF = async () => {
+      setIsLoading(true);
+      try {
+        const token = await SecureStore.getItemAsync('my_token');
+        const response = await fetch('https://pathtopeaceserver.onrender.com/generate-pdf', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+    
+        if (response.ok) {
+          const pdfUrl = await response.json(); 
+          setPdfAvailable(true);
+          await WebBrowser.openBrowserAsync(pdfUrl.url);
+          setIsLoading(false); // Open the retrieved PDF URL in the web view
+        } else {
+          console.error('Error generating PDF report:', response.statusText);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setIsLoading(false);
+        console.error('Error fetching PDF URL:', error);
+        alert('Error generating PDF report. Please try again later.');
+      }
+    };
+
   return (
     <ScrollView style={styles.container}>
+          {pdfAvailable && ( // Conditionally render the button
+            <Button title="Open PDF Report" onPress={handleOpenPDF} />
+          )}
      <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 24, backgroundColor:'#3E8BA9', textAlign:'center'}}>{username}</Text>
      <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, marginBottom: 5, backgroundColor: '#3E8BA9',textAlign:'center' }} >Day:{day}/30</Text>
       {renderProgressBarWithPercentage('Fatigue & Exhaustion', fatigueAndExhaustion, setFatigueAndExhaustion)}
