@@ -43,7 +43,6 @@ const EmotionalRating = ({ navigation }) => {
         .then(data => {
           if (data.message !== 'Token is valid') {
             console.warn('Invalid token:', data.message);
-            SecureStore.deleteItemAsync('my_token');
             navigation.navigate('Login');
           }else{
             setDay(data.day);

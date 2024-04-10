@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {View, Button, Text, ScrollView,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
+import {View, Button,TextInput, Text, ScrollView,Image,ImageBackground, StyleSheet,ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as SecureStore from 'expo-secure-store';
@@ -12,18 +12,9 @@ const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [username, setUsername]= useState('');
   const navigation = useNavigation();
-  const [firstQ, setFirstQ]= useState('');
-  const [secondQ, setSecondQ]= useState('');
-  const [thirdQ, setThirdQ]= useState('');
-  const [fourthQ, setFourthQ]= useState('');
-  const [fifthQ, setFifthQ]= useState('');
   const [message, setMessage]= useState('');
-  const [prompts,setPrompts]=useState(null);
-  const [firstQS, setFirstQS]= useState('');
-  const [secondQS, setSecondQS]= useState('');
-  const [thirdQS, setThirdQS]= useState('');
-  const [fourthQS, setFourthQS]= useState('');
-  const [fifthQS, setFifthQS]= useState('');
+  const [prompts,setPrompts]=useState([]);
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => { 
     retrieveToken();
@@ -52,7 +43,6 @@ const HomeScreen = () => {
           } else {
             // Handle invalid token scenario (e.g., clear token and redirect to login)
             console.warn('Invalid token:', data.message);
-            deleteItemAsync('my_token')
             navigation.navigate('Login');
           }
         })
@@ -70,30 +60,36 @@ const HomeScreen = () => {
  // saving daily prompts from the server
  const savingPrompts = async () => {
   setIsLoading(true);
+  const allAnswers= answers.every((input) => input.trim() !== '');
+  if (!allAnswers) {
+    setMessage('Please fill in all fields');
+    setIsLoading(false);
+    return;
+  }
 
   const token = await SecureStore.getItemAsync('my_token');
 
-  if(token){
+  if (token) {
     fetch('https://pathtopeaceserver.onrender.com/dailyPromptsAnswers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token,firstQS,secondQS,thirdQS,fourthQS,fifthQS }),
+      body: JSON.stringify({ token, answers }),
     })
-    .then(response => response.json())
-    .then(data =>{
-
-      if(data.message === 'success'){
-        setIsLoading(false);
-        navigation.navigate('EmotionalRating');
-        setMessage(data.message);
-      }else{
-        setMessage(data.message)
-      }
-    })
-    .catch(error =>{
-      setMessage("Network error!!")
-    });
-  };
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'success') {
+          setIsLoading(false);
+          navigation.navigate('EmotionalRating');
+          setMessage(data.message);
+        } else {
+          setMessage(data.message);
+        }
+      })
+      .catch(error => {
+        console.error(error)
+        setMessage('Network error!');
+      });
+  }
 };
 
 const gettingPrompts = async () => {
@@ -102,21 +98,23 @@ const gettingPrompts = async () => {
   const token = await SecureStore.getItemAsync('my_token');
 
   if(token){
-    fetch('https://pathtopeaceserver.onrender.com/dailyPromptsAnswers', {
+    fetch('https://pathtopeaceserver.onrender.com/dailyPrompts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token}),
     })
     .then(response => response.json())
     .then(data =>{
-      if(data.prompt === "server error"){
-        setMessage(data.prompt);
+      if(!data.message === 'The user has completed the 11 day journey'){
+        setMessage("You have completed the 11 day journey");
+        navigation.navigate('EmotionalRating');
       }else{
         setPrompts(data.prompt);
         setIsLoading(false);
       }
     })
     .catch(error =>{
+      console.error(error)
       setMessage("Network error!! please try again")
     })
   }
@@ -132,55 +130,24 @@ const gettingPrompts = async () => {
         <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
         <Text style={{ color: '#FF7F50', fontWeight: 'bold', fontSize: 25, marginBottom: 3 }} >Daily Prompts</Text>
           <View>
-          {prompts && (
-            <>
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>{prompts.firstQ}</Text>
+          {prompts.length > 0 ? (
+  prompts.map((prompt, index) => (
+    <View key={index}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>
+        {prompt.prompt}
+      </Text>
       <TextInput
         multiline={true}
         numberOfLines={10}
         style={{ backgroundColor: 'white',borderColor: '#3E8BA9', borderWidth: 1, borderRadius: 5, padding: 10, marginBottom: 20 }}
-        onChangeText={setFirstQ}
-        value={firstQ}
+        onChangeText={(text) => setAnswers(prevAnswers => [...prevAnswers, text])}
+        value={answers[index] || ''} 
       />
-    
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>{prompts.secondQ}</Text>
-      <TextInput
-        multiline={true}
-        numberOfLines={10}
-        style={{backgroundColor: 'white', borderColor: '#3E8BA9', borderWidth: 1, borderRadius: 5, padding: 10, marginBottom: 20 }}
-        onChangeText={setSecondQ}
-        value={secondQ}
-      />
-    
-    <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>{prompts.thirdQ}</Text>
-      <TextInput
-        multiline={true}
-        numberOfLines={10}
-        style={{backgroundColor: 'white', borderColor: '#3E8BA9', borderWidth: 1, borderRadius: 5, padding: 10, marginBottom: 20 }}
-        onChangeText={setThirdQ}
-        value={thirdQ}
-      />
-
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>{prompts.fourthQ}</Text>
-      <TextInput
-        multiline={true}
-        numberOfLines={10}
-        style={{ backgroundColor: 'white',borderColor: '#3E8BA9', borderWidth: 1, borderRadius: 5, padding: 10, marginBottom: 20 }}
-        onChangeText={ setFourthQ}
-        value={fourthQ}
-        />
-
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color: '#3E8BA9' }}>{prompts.fifthQ}</Text>
-      <TextInput
-        multiline={true}
-        numberOfLines={10}
-        style={{ backgroundColor: 'white',borderColor: '#3E8BA9', borderWidth: 1, borderRadius: 5, padding: 10, marginBottom: 20 }}
-        onChangeText={ setFifthQ}
-        value={fifthQ}
-      />
-            </>
-
-          )}
+    </View>
+  ))
+) : (
+  <Text>No prompts available.</Text>
+)}
                     {isLoading ? (
           <ActivityIndicator size="large" color="#3E8BA9" />
         ) : null}
@@ -188,7 +155,7 @@ const gettingPrompts = async () => {
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10, color: 'green' }}>{message}</Text>
       
       <Button
-        style={{ backgroundColor: '#3E8BA9' }}
+        style={{ backgroundColor: '#FF7F50' }}
         title="Submit prompt answers"
         onPress={savingPrompts}
       />
